@@ -1,10 +1,11 @@
 public class ArrayOps {
     public static void main(String[] args) {
+        System.out.println(secondMaxValue(new int[] { -202, 48, 13, 7, 8 }));
     }
 
     public static int findMissingInt(int[] array) {
         // Write your code here:
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i <= array.length; i++) {
             boolean inArray = false;
             for (int j = 0; j < array.length; j++) {
                 if (array[j] == i) {
@@ -22,7 +23,16 @@ public class ArrayOps {
         // Write your code here:
         int[] new_array = new int[array.length - 1];
         int original_max = max(array);
+        int counter = 0;
         for (int i = 0; i < array.length; i++) {
+            if (array[i] == original_max) {
+                counter++;
+            }
+        }
+        if (counter > 1) {
+            return original_max;
+        }
+        for (int i = 0; i < new_array.length; i++) {
             if (array[i] != original_max) {
                 new_array[i] = array[i];
             }

@@ -25,7 +25,7 @@ public class StringOps {
     public static int NUM_VOWELS = VOWELS.length;
 
     public static void main(String[] args) {
-        System.out.println();
+        System.out.println(camelCase("  tWo     wordS"));
     }
 
     public static String capVowelsLowRest(String string) {
@@ -63,15 +63,18 @@ public class StringOps {
         string = removeSpaces(string);
         if (string.charAt(0) <= 'Z') {
             new_string += (char) (string.charAt(0) + 32);
+        } else {
+            new_string += string.charAt(0);
         }
         for (int i = 1; i < string.length(); i++) {
             rel_char = string.charAt(i);
             if (!(rel_char == ' ')) {
+                if (!after_space && rel_char <= 'Z') {
+                    rel_char += (char) 32;
+                }
                 if (after_space && rel_char >= 'a') {
                     rel_char -= (char) 32;
                     after_space = false;
-                } else if (!after_space && rel_char <= 'Z') {
-                    rel_char += (char) 32;
                 }
                 new_string += rel_char;
             } else {
