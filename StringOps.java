@@ -25,10 +25,7 @@ public class StringOps {
     public static int NUM_VOWELS = VOWELS.length;
 
     public static void main(String[] args) {
-        int[] new_array = allIndexOf("hello worllld", 'l');
-        for (int i = 0; i < new_array.length; i++) {
-            System.out.println(new_array[i]);
-        }
+        System.out.println();
     }
 
     public static String capVowelsLowRest(String string) {
@@ -63,6 +60,7 @@ public class StringOps {
         String new_string = "";
         boolean after_space = false;
         char rel_char;
+        string = removeSpaces(string);
         if (string.charAt(0) <= 'Z') {
             new_string += (char) (string.charAt(0) + 32);
         }
@@ -72,6 +70,8 @@ public class StringOps {
                 if (after_space && rel_char >= 'a') {
                     rel_char -= (char) 32;
                     after_space = false;
+                } else if (!after_space && rel_char <= 'Z') {
+                    rel_char += (char) 32;
                 }
                 new_string += rel_char;
             } else {
@@ -79,6 +79,14 @@ public class StringOps {
             }
         }
         return new_string;
+    }
+
+    public static String removeSpaces(String string) {
+        int i = 0;
+        while (string.charAt(i) == ' ') {
+            i++;
+        }
+        return string.substring(i);
     }
 
     public static int[] allIndexOf(String string, char chr) {
