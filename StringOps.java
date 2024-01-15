@@ -21,11 +21,11 @@ public class StringOps {
     ////// in Recitation 3 question 5 ///////
     ////// ///////
     ////////////////////////////////////////////////////////////
-    public static char[] VOWELS = { 'a', 'e', 'i', 'o', 'u' };
+    public static char[] VOWELS = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
     public static int NUM_VOWELS = VOWELS.length;
 
     public static void main(String[] args) {
-        System.out.println(camelCase("  tWo     wordS"));
+        System.out.println(capVowelsLowRest("One Two THree"));
     }
 
     public static String capVowelsLowRest(String string) {
@@ -35,7 +35,8 @@ public class StringOps {
         for (int i = 0; i < string.length(); i++) {
             c = string.charAt(i);
             if (isVowel(c)) {
-                c -= 32;
+                if (c > 'Z')
+                    c -= 32;
             } else {
                 if (c >= 65 && c <= 90) {
                     c += 32;
@@ -72,9 +73,11 @@ public class StringOps {
                 if (!after_space && rel_char <= 'Z') {
                     rel_char += (char) 32;
                 }
-                if (after_space && rel_char >= 'a') {
-                    rel_char -= (char) 32;
+                if (after_space) {
                     after_space = false;
+                    if (rel_char >= 'a') {
+                        rel_char -= (char) 32;
+                    }
                 }
                 new_string += rel_char;
             } else {
